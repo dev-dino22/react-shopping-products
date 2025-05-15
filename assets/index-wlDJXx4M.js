@@ -9924,7 +9924,7 @@ function ShopFilter({
   ] });
 }
 function CartButton({ itemsCount }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container, { "data-testid": "cart-button", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(CartIcon, { src: "./assets/icons/Cart.svg" }),
     itemsCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(ItemsCountBox, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ItemsCountText, { children: itemsCount }) })
   ] });
