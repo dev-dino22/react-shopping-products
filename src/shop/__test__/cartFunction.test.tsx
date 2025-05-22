@@ -11,11 +11,9 @@ import { productListMockData } from '../__mocks__/productListMockData';
 
 let currentCart = [...cartMockData];
 
-// jest.mock('../../api/cart', () => ({}));
-
 jest.mock('../../api/cart', () => ({
   getShoppingCartData: jest.fn(() => Promise.resolve(currentCart)),
-  addCartItem: jest.fn((productId: string) => {
+  postCartItem: jest.fn((productId: string) => {
     const foundProduct = productListMockData.find((p) => p.id === productId);
     if (!foundProduct) {
       throw new Error(`${productId} id를 가진 Product가 존재하지 않습니다.`);
@@ -33,10 +31,6 @@ jest.mock('../../api/cart', () => ({
   }),
 }));
 
-// jest.mock('../../api/cart', () => ({
-
-// }));
-
 jest.mock('../../api/products', () => ({
   getProductsData: jest.fn(() => Promise.resolve(productListMockData)),
 }));
@@ -47,7 +41,7 @@ jest.mock('../../api/baseAPI', () => ({
 
 describe('SHOP 페이지에 접속 시', () => {
   afterEach(() => {
-    currentCart = [...cartMockData]; // 테스트 간 상태 초기화
+    currentCart = [...cartMockData];
     jest.clearAllMocks();
   });
 
@@ -67,6 +61,7 @@ describe('SHOP 페이지에 접속 시', () => {
     const firstProductCard = await screen.findByTestId('product-26');
     const addButton = within(firstProductCard).getByRole('button');
     fireEvent.click(addButton);
+    console.log('addButton ->>>>', addButton);
 
     await waitFor(() => {
       expect(screen.getByTestId('cart-count').textContent).toBe('3');
