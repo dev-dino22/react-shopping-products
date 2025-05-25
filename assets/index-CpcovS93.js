@@ -16857,7 +16857,11 @@ function App() {
 }
 async function enableMocking() {
   const { worker } = await __vitePreload(() => import("./browser-BQ1_tQ0x.js"), true ? [] : void 0);
+  const isLocalhost = location.hostname === "localhost";
   return worker.start({
+    serviceWorker: {
+      url: isLocalhost ? "/mockServiceWorker.js" : "/react-shopping-products/mockServiceWorker.js"
+    },
     onUnhandledRequest: "bypass"
   });
 }
