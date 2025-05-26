@@ -16660,7 +16660,13 @@ function ToggleCartButton({ productId, ...props }) {
     }
   );
 }
-function ProductCard({ id, name, price, imageUrl, quantity }) {
+const ProductCard = reactExports.memo(function ProductCard2({
+  id,
+  name,
+  price,
+  imageUrl,
+  quantity
+}) {
   const isSoldOut = quantity === 0;
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$2, { as: "li", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(PreviewBox, { children: [
@@ -16691,7 +16697,7 @@ function ProductCard({ id, name, price, imageUrl, quantity }) {
       !isSoldOut && /* @__PURE__ */ jsxRuntimeExports.jsx(ToggleCartButton, { productId: id })
     ] })
   ] });
-}
+});
 const Container$2 = newStyled(Flex)`
   width: 182px;
   height: 224px;
