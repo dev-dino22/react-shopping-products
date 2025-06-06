@@ -90,6 +90,6 @@ export const patchCartHandler = http.patch(
     if (targetIndex !== -1) {
       cartMockDataMSW[targetIndex].quantity = quantity;
     }
-    return HttpResponse.json(null, { status: 204 });
+    return new HttpResponse(null, { status: 204 });
   }
 );
